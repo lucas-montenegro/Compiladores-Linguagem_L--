@@ -6,21 +6,29 @@ import java.util.Scanner;
 
 public class Compiler {
 
-    public static void main() {
-        Scanner scanner = new Scanner(System.in);
-        String filename = scanner.nextLine();
+    public static void main(String[] args) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            String filename = "C:\\Users\\lucas\\ufal\\5_periodo\\compiladores\\Compiladores-Linguagem_L--\\Linguagem_L--\\src\\compiler\\teste.txt"; // scanner.nextLine();
 
-        // start lexical analysis
-        LexicalScannerL lexicalScanner = new LexicalScannerL();
-        lexicalScanner.readFile(filename);
+            // start lexical analysis
+            LexicalScannerL lexicalScanner = new LexicalScannerL();
+            lexicalScanner.readFile(filename);
 
-        // TODO token information
-        ArrayList<Token> tokens = lexicalScanner.getTokens();
+            // program token information
+            ArrayList<Token> tokens = lexicalScanner.getTokens();
 
-        for (Token token : tokens) {
-            System.out.println(token.toString());
+            for (Token token : tokens) {
+                System.out.println(token.toString());
+            }
+
+            lexicalScanner.ErrorMessages();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
 
+        return;
     }
 }
