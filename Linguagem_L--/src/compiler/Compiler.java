@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Compiler {
-
     public static void main(String[] args) {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -18,11 +17,7 @@ public class Compiler {
             // program token information
             ArrayList<Token> tokens = lexicalScanner.getTokens();
 
-            for (Token token : tokens) {
-                System.out.println(token.toString());
-            }
-
-            lexicalScanner.ErrorMessages();
+            //lexicalScanner.ErrorMessages();
         }
         catch (Exception e) {
             e.printStackTrace();
