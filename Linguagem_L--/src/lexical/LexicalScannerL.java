@@ -14,15 +14,22 @@ public class LexicalScannerL {
     private int row = 0;
     private int column = 0;
 
-    public LexicalScannerL() {
+    public LexicalScannerL(String[] args) {
         this.tokens = new ArrayList<Token>();
         fillTokenClasses();
+        String filePath = args[0];
+
+        try {
+            readFile(filePath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void readFile(String filename) throws FileNotFoundException { // read all the file line by line
+    public void readFile(String filePath) throws FileNotFoundException { // read all the file line by line
         String lineRow;
         try {
-            File file = new File("C:\\Users\\lucas\\ufal\\5_periodo\\compiladores\\Compiladores-Linguagem_L--\\Linguagem_L--\\src\\compiler\\teste.txt");
+            File file = new File(filePath);
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) { // loop to read all the program line by line
@@ -192,7 +199,7 @@ public class LexicalScannerL {
                             state = 8;
                         }
                         else {
-                            return new Token(currentTokenValue, TokenClass.OPTATTIB, row, column);
+                            return new Token(currentTokenValue, TokenClass.OPTATRIB, row, column);
                         }
                         break;
                     case 7:
@@ -252,7 +259,12 @@ public class LexicalScannerL {
                         }
                         break;
                     case 15:
-                        if(isEscapeChar(currentChar)) {
+                        if(isChar(currentChar) || isDigit(currentChar) || (isSymbol(currentChar) && currentChar != '#')) {
+                            currentTokenValue = currentTokenValue + currentChar;
+                            nextChar();
+                            state = 16;
+                        }
+                        else if(currentChar == '\\') {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 17;
@@ -262,13 +274,8 @@ public class LexicalScannerL {
                             nextChar();
                             state = 18;
                         }
-                        else if(isNewLine(currentChar)) {
-                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
-                        }
                         else {
-                            currentTokenValue = currentTokenValue + currentChar;
-                            nextChar();
-                            state = 16;
+                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
                         }
                         break;
                     case 16:
@@ -282,45 +289,45 @@ public class LexicalScannerL {
                         }
                         break;
                     case 17:
-                        if(isNewLine(currentChar)) {
-                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
-                        }
-                        else {
+                        if(isEscapeChar(currentChar)) {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 16;
+                        }
+                        else {
+                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
                         }
                         break;
                     case 18:
                         return new Token(currentTokenValue, TokenClass.CONSTCHAR, row, column);
                     case 19:
-                        if(isDoubleQuote(currentChar)) {
+                        if(isChar(currentChar) || isDigit(currentChar) || isSymbol(currentChar)) {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
-                            state = 21;
+                            state = 19;
                         }
-                        else if(isEscapeChar(currentChar)) {
+                        else if(currentChar == '\\') {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 20;
                         }
-                        else if(isNewLine(currentChar)) {
-                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
-                        }
-                        else {
+                        else if(isDoubleQuote(currentChar)) {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
-                            state = 19;
+                            state = 21;
+                        }
+                        else {
+                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
                         }
                         break;
                     case 20:
-                        if(isNewLine(currentChar)) {
-                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
-                        }
-                        else {
+                        if(isEscapeChar(currentChar)) {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 19;
+                        }
+                        else {
+                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
                         }
                         break;
                     case 21:
@@ -344,6 +351,9 @@ public class LexicalScannerL {
         tokenClasses.put("else", TokenClass.CONDELSE);
         tokenClasses.put("for", TokenClass.LOOPFOR);
         tokenClasses.put("while", TokenClass.LOOPWHILE);
+        tokenClasses.put("null", TokenClass.NULL);
+        tokenClasses.put("break", TokenClass.BREAK);
+        tokenClasses.put("void", TokenClass.TYPEVOID);
         tokenClasses.put("int", TokenClass.TYPEINT);
         tokenClasses.put("float", TokenClass.TYPEFLOAT);
         tokenClasses.put("char", TokenClass.TYPECHAR);
@@ -353,6 +363,7 @@ public class LexicalScannerL {
         tokenClasses.put("read", TokenClass.READ);
         tokenClasses.put("write", TokenClass.WRITE);
         tokenClasses.put("true", TokenClass.CONSTBOOL);
+        tokenClasses.put("false", TokenClass.CONSTBOOL);
 
         // arithmetic operators
         tokenClasses.put("+", TokenClass.OPTADD);
@@ -399,6 +410,11 @@ public class LexicalScannerL {
                 || (c == '-') || (c == '^') || (c == '*') || (c == '/') || (c == '%');
     }*/
 
+     private boolean isSymbol(char c) {
+        return (c == '>') || (c == '<') || (c == '=') || (c == '!') || (c == '&') || (c == '|') || (c == '+')
+                || (c == '-') || (c == '^') || (c == '*') || (c == '/') || (c == '%') || (c == ' ') || (c == ';') || (c == '.') || (c == ',') || (c == ':') || (c == '?') || (c == '_') || (c == '@') || (c == '#') || (c == '$') || (c == '(') || (c == ')') || (c == '[') || (c == ']') || (c == '{') || (c == '}');
+    }
+
     private boolean isDelimiter(char c) {
         return (c == ',') || (c == ';') || (c == '(') || (c == ')') || (c == '[') || (c == ']') || (c == '{') || (c == '}');
     }
@@ -436,7 +452,7 @@ public class LexicalScannerL {
     }
 
     private boolean isEscapeChar(char c) {
-        return (c == '\\');
+        return (c == '\\') || (c == '\"') || (c == '\'') || (c == 'n') || (c == '#');
     }
 
     private boolean isSimpleQuote(char c) {
