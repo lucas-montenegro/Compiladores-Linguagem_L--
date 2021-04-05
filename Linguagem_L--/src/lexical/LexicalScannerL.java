@@ -21,7 +21,7 @@ public class LexicalScannerL {
 
         try {
             readFile(filePath);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -57,7 +57,7 @@ public class LexicalScannerL {
 
             tokens.add(new Token("EOF", TokenClass.ENDFILE, row, column));
             scanner.close();
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
