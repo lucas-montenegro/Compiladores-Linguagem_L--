@@ -134,6 +134,11 @@ public class LexicalScannerL {
                             nextChar();
                             state = 19;
                         }
+                        else if(currentChar == '@') { // if the initial terminal is the concat operator (@), goes to state 22
+                            currentTokenValue = currentTokenValue + currentChar;
+                            nextChar();
+                            state = 22;
+                        }
                         else if(isSpace(currentChar) || isNewLine(currentChar)) { // if the initial terminal is a space or '\n', ignore it and remains in state 0
                             nextChar();
                             nextColumn(); // updates the column if the previous char was a space or \n
@@ -199,7 +204,7 @@ public class LexicalScannerL {
                             state = 8;
                         }
                         else {
-                            return new Token(currentTokenValue, TokenClass.OPTATRIB, row, column);
+                            return new Token(currentTokenValue, TokenClass.ATRIB, row, column);
                         }
                         break;
                     case 7:
@@ -332,6 +337,8 @@ public class LexicalScannerL {
                         break;
                     case 21:
                         return new Token(currentTokenValue, TokenClass.CONSTSTRING, row, column);
+                    case 22:
+                        return new Token(currentTokenValue, TokenClass.OPTCONCAT, row, column);
                 }
             }
         }
@@ -372,6 +379,9 @@ public class LexicalScannerL {
         tokenClasses.put("*", TokenClass.OPTMULT);
         tokenClasses.put("^", TokenClass.OPTPOW);
         tokenClasses.put("%", TokenClass.OPTMOD);
+
+        // concat operator
+        tokenClasses.put("@", TokenClass.OPTCONCAT);
 
         // relational operators
         tokenClasses.put("<", TokenClass.OPTLESS);

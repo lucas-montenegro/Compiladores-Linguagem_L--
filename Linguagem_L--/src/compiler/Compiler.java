@@ -3,8 +3,6 @@ package compiler;
 import lexical.LexicalScannerL;
 import lexical.Token;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Compiler {
