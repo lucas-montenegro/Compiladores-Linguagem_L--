@@ -1,4 +1,5 @@
 function int main () {
-    write("Hello World!");
+    $ Apenas um comentário
+    write("Hello World!"); $ mais um comentário
     return 1;
 }

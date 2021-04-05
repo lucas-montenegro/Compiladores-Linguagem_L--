@@ -46,6 +46,11 @@ public class LexicalScannerL {
                     Token currentToken = nextToken(); // read and classify the current token
 
                     if(currentToken == null) { break; }
+                    else if(currentToken.getTokenClass() == TokenClass.COMMENT) {
+                        tokens.add(currentToken);
+                        System.out.println(currentToken.toString());
+                        break;
+                    }
                     else {
                         tokens.add(currentToken);
                         System.out.println(currentToken.toString());
@@ -55,7 +60,12 @@ public class LexicalScannerL {
                 nextRow(); // updating the current row
             }
 
+            lineRow = "%04d  ";
+            System.out.println(String.format(lineRow, row));
+            Token EOFToken = new Token("EOF", TokenClass.ENDFILE, row, column);
             tokens.add(new Token("EOF", TokenClass.ENDFILE, row, column));
+            System.out.println(EOFToken.toString());
+
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -119,7 +129,7 @@ public class LexicalScannerL {
                             nextChar();
                             state = 13;
                         }
-                        else if(isComment(currentChar)) { // if the initial terminal is the commentary symbol '$', goes to state 13
+                        else if(isComment(currentChar)) { // if the initial terminal is the commentary symbol '$', goes to state 14
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 14;
@@ -254,15 +264,7 @@ public class LexicalScannerL {
                     case 13:
                         return new Token(currentTokenValue, checkTokenClasses(currentTokenValue), row, column);
                     case 14:
-                        if(isNewLine(currentChar)) {
-                            return new Token(currentTokenValue, TokenClass.COMMENT, row, column);
-                        }
-                        else {
-                            currentTokenValue = currentTokenValue + currentChar;
-                            nextChar();
-                            state = 14;
-                        }
-                        break;
+                        return new Token(currentTokenValue, TokenClass.COMMENT, row, column);
                     case 15:
                         if(isChar(currentChar) || isDigit(currentChar) || (isSymbol(currentChar) && currentChar != '#')) {
                             currentTokenValue = currentTokenValue + currentChar;
