@@ -32,7 +32,8 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token [ Value = " + tokenValue + ", Type = " + tokenClass + ", Row = " + tokenRow + ", Column = " + tokenColumn+ " ]";
+        String format = "              [%04d, %04d] (%04d, %20s) {%s}";
+        return String.format(format, tokenRow, tokenColumn, tokenClass.ordinal(), tokenClass.toString(), tokenValue);
     }
 
 }

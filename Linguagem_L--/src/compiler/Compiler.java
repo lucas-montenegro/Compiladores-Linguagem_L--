@@ -1,26 +1,29 @@
 package compiler;
 
-import lexical.*;
+import lexical.LexicalScannerL;
+import lexical.Token;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Compiler {
+    public static void main(String[] args) {
+        try {
+            // start lexical analysis
+            if(args.length > 1 || args.length == 0) {
+                System.out.println("Envie apenas um arquivo para ser compilado!");
+                return;
+            }
+            LexicalScannerL lexicalScanner = new LexicalScannerL(args);
 
-    public static void main() {
-        Scanner scanner = new Scanner(System.in);
-        String filename = scanner.nextLine();
+            // program token information
+            ArrayList<Token> tokens = lexicalScanner.getTokens();
 
-        // start lexical analysis
-        LexicalScannerL lexicalScanner = new LexicalScannerL();
-        lexicalScanner.readFile(filename);
-
-        // TODO token information
-        ArrayList<Token> tokens = lexicalScanner.getTokens();
-
-        for (Token token : tokens) {
-            System.out.println(token.toString());
+            //lexicalScanner.ErrorMessages();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
-
+        return;
     }
 }

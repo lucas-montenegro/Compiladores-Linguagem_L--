@@ -1,0 +1,36 @@
+function void fibonacci(int n) {
+    int a, b, c;
+    string space;
+    a = 0;
+    b = 1;
+
+    if(n == 0) {
+        write("Digite um valor maior que zero!\n");
+    }
+    elsif(n == 1) {
+        write("0\n");
+    }
+    else {
+        write("0, 1");
+        c = a + b;
+        while(c < n) {
+            if(c < n)  {
+                write(", #d", c);
+            }
+            else {
+                write("\n");
+                break;
+            }
+            a = b;
+            b = c;
+        }
+    }
+    return;
+}
+
+
+
+function int main () {
+    write("Hello World!");
+    return 1;
+}

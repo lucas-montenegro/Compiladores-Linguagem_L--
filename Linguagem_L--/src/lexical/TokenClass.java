@@ -1,5 +1,5 @@
 package lexical;
 
 public enum TokenClass {
-     unknown, main, id, typeInt, typeFloat, typeChar, typeBool, typeString, constInt, constFloat, constBool, constChar,             constString, optAdd, optPow, optMult, optDiv, optSub, optMod, optAttib, optLess, optLessEq, optGreat, optGreatEq, optEq,       optNotEq, optAnd, optOr, optNot, optConcat, condIf, condElsif, condElse, loopWhile, loopFor, read, write, separator,           paramInit, paramEnd, arrInit, arrEnd, comment, funcDef, funcReturn, funcInit, funcEnd, sentenEnd, endFile
+     UNKNOWN, MAIN, ID, TYPEVOID, TYPEINT, TYPEFLOAT, TYPECHAR, TYPEBOOL, TYPESTRING, TYPEARRAY, NULL, BREAK, CONSTINT, CONSTFLOAT, CONSTBOOL, CONSTCHAR, CONSTSTRING, OPTADD, OPTPOW, OPTMULT, OPTDIV, OPTSUB, OPTMOD, OPTCONCAT, ATRIB, OPTLESS, OPTLESSEQ, OPTGREAT, OPTGREATEQ, OPTEQ, OPTNOTEQ, OPTAND, OPTOR, OPTNOT, CONDIF, CONDELSIF, CONDELSE, LOOPWHILE, LOOPFOR, READ, WRITE, SEPARATOR, PARAMINIT, PARAMEND, ARRINIT, ARREND, COMMENT, FUNCDEF, FUNCRETURN, FUNCINIT, FUNCEND, SENTENEND, ENDFILE
 }
