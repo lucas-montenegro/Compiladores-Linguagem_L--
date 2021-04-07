@@ -371,6 +371,8 @@ public class LexicalScannerL {
         tokenClasses.put("array", TokenClass.TYPEARRAY);
         tokenClasses.put("read", TokenClass.READ);
         tokenClasses.put("write", TokenClass.WRITE);
+
+        // boolean
         tokenClasses.put("true", TokenClass.CONSTBOOL);
         tokenClasses.put("false", TokenClass.CONSTBOOL);
 
