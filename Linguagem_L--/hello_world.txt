@@ -1,4 +1,4 @@
 function int main () {
-    write("Hello World!");
-    return 1;
+  write ("Hello World!");
+  return 1;
 }

@@ -5,10 +5,10 @@ function void fibonacci(int n) {
     b = 1;
 
     if(n == 0) {
-        write("Digite um valor maior que zero!\n");
+        write("#i\n", n);
     }
     elsif(n == 1) {
-        write("0\n");
+        write("0, #i\n", n);
     }
     else {
         write("0, 1");
@@ -28,12 +28,9 @@ function void fibonacci(int n) {
     return;
 }
 
-
-
 function int main () {
     int n;
     read(n);
-
     fibbonaci(n);
     return 1;
 }
