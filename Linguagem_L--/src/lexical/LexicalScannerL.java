@@ -2,80 +2,28 @@ package lexical;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
 import java.util.Hashtable;
 
 public class LexicalScannerL {
-    private ArrayList<Token> tokens;
     Hashtable<String, TokenClass> tokenClasses = new Hashtable<String, TokenClass>();
-    private String line;
+
     private int pos = 0;
     private int row = 0;
     private int column = 0;
 
-    public LexicalScannerL(String[] args) {
-        this.tokens = new ArrayList<Token>();
+    public LexicalScannerL() {
         fillTokenClasses();
-        String filePath = args[0];
-
-        try {
-            readFile(filePath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
-    public void readFile(String filePath) throws FileNotFoundException { // read all the file line by line
-        String lineRow;
-        try {
-            File file = new File(filePath);
-            Scanner scanner = new Scanner(file);
-
-            while (scanner.hasNextLine()) { // loop to read all the program line by line
-                line = scanner.nextLine();
-                lineRow = "%04d  ";
-                System.out.printf(String.format(lineRow, row));
-                System.out.println(line);
-
-                line = line + '\n';
-                pos = 0; // restart position to the beginning of each line
-
-                while(true) { // search for all tokens in the current line
-                    nextColumn(); // updating the current column
-                    Token currentToken = nextToken(); // read and classify the current token
-
-                    if(currentToken == null) { break; }
-                    else {
-                        tokens.add(currentToken);
-                        System.out.println(currentToken.toString());
-                    }
-                }
-
-                nextRow(); // updating the current row
-            }
-
-            lineRow = "%04d  ";
-            System.out.println(String.format(lineRow, row));
-            Token EOFToken = new Token("EOF", TokenClass.ENDFILE, row, column);
-            tokens.add(new Token("EOF", TokenClass.ENDFILE, row, column));
-            System.out.println(EOFToken.toString());
-
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Token nextToken() {
+    public Token nextToken(String line) {
         char currentChar;
         int state = 0;
         String currentTokenValue = "";
 
         try {
             while(true) {
-                if(isEOF()) { return null; }
-                currentChar = getCurrentChar();
+                if(isEOF(line)) { return null; }
+                currentChar = getCurrentChar(line);
 
                 switch (state) {
                     case 0: // initial state of the automaton
@@ -411,12 +359,7 @@ public class LexicalScannerL {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'); //
     }
 
-    /*private boolean isOperator(char c) {
-        return (c == '>') || (c == '<') || (c == '=') || (c == '!') || (c == '&') || (c == '|') || (c == '+')
-                || (c == '-') || (c == '^') || (c == '*') || (c == '/') || (c == '%');
-    }*/
-
-     private boolean isSymbol(char c) {
+    private boolean isSymbol(char c) {
         return (c == '>') || (c == '<') || (c == '=') || (c == '!') || (c == '&') || (c == '|') || (c == '+')
                 || (c == '-') || (c == '^') || (c == '*') || (c == '/') || (c == '%') || (c == ' ') || (c == ';') || (c == '.') || (c == ',') || (c == ':') || (c == '?') || (c == '_') || (c == '@') || (c == '#') || (c == '$') || (c == '(') || (c == ')') || (c == '[') || (c == ']') || (c == '{') || (c == '}');
     }
@@ -481,7 +424,7 @@ public class LexicalScannerL {
         return c == '.';
     }
 
-    private boolean isEOF() { // check if the line reached the end
+    private boolean isEOF(String line) { // check if the line reached the end
         return pos == line.length();
     }
     // end of character recognizing methods
@@ -498,37 +441,29 @@ public class LexicalScannerL {
 
     // end of Token classes recognizing methods
 
-    private char getCurrentChar() { return line.charAt(pos); }
+    private char getCurrentChar(String line) { return line.charAt(pos); }
 
-    private void nextChar() { pos++; }
+    public void nextChar() { pos++; }
 
-    /*private void previousChar() {
-    pos--;
-    }*/
-
-    private void nextColumn() { // update the current column
+    public void nextColumn() { // update the current column
         column = pos;
     }
 
-    private void nextRow() { // update the current row
+    public void nextRow() { // update the current row
         row++;
     }
 
-    public void ErrorMessages() { // print all the possible lexical errors
-        int errorFlag = 0;
-        for (Token token : tokens) {
-            if(token.getTokenClass() ==  TokenClass.UNKNOWN) {
-                System.out.println("Lexical error: Unknown token type at row: " + token.getTokenRow() + ", column: " + token.getTokenColumn());
-                errorFlag = 1;
-            }
-        }
+    public void restartPos() { pos = 0; }
 
-        if(errorFlag == 0) {
-            System.out.println("Compiled successful with no lexical errors");
-        }
+    public int getPos() {
+        return pos;
     }
 
-    public ArrayList<Token> getTokens() { // get all the tokens of the program
-        return tokens;
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
     }
 }
