@@ -31,6 +31,9 @@ function void fibonacci(int n) {
 
 
 function int main () {
-    write("Hello World!");
+    int n;
+    read(n);
+
+    fibbonaci(n);
     return 1;
 }

@@ -46,11 +46,6 @@ public class LexicalScannerL {
                     Token currentToken = nextToken(); // read and classify the current token
 
                     if(currentToken == null) { break; }
-                    else if(currentToken.getTokenClass() == TokenClass.COMMENT) {
-                        tokens.add(currentToken);
-                        System.out.println(currentToken.toString());
-                        break;
-                    }
                     else {
                         tokens.add(currentToken);
                         System.out.println(currentToken.toString());
@@ -264,9 +259,9 @@ public class LexicalScannerL {
                     case 13:
                         return new Token(currentTokenValue, checkTokenClasses(currentTokenValue), row, column);
                     case 14:
-                        return new Token(currentTokenValue, TokenClass.COMMENT, row, column);
+                        return null;
                     case 15:
-                        if(isChar(currentChar) || isDigit(currentChar) || (isSymbol(currentChar) && currentChar != '#')) {
+                        if(isChar(currentChar) || isDigit(currentChar) || isSymbol(currentChar)) {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 16;
@@ -296,13 +291,13 @@ public class LexicalScannerL {
                         }
                         break;
                     case 17:
-                        if(isEscapeChar(currentChar)) {
+                        if(isNewLine(currentChar)) {
+                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
+                        }
+                        else {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 16;
-                        }
-                        else {
-                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
                         }
                         break;
                     case 18:
@@ -328,13 +323,13 @@ public class LexicalScannerL {
                         }
                         break;
                     case 20:
-                        if(isEscapeChar(currentChar)) {
+                        if(isNewLine(currentChar)) {
+                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
+                        }
+                        else {
                             currentTokenValue = currentTokenValue + currentChar;
                             nextChar();
                             state = 19;
-                        }
-                        else {
-                            return new Token(currentTokenValue, TokenClass.UNKNOWN, row, column);
                         }
                         break;
                     case 21:
@@ -383,9 +378,6 @@ public class LexicalScannerL {
         tokenClasses.put("*", TokenClass.OPTMULT);
         tokenClasses.put("^", TokenClass.OPTPOW);
         tokenClasses.put("%", TokenClass.OPTMOD);
-
-        // concat operator
-        tokenClasses.put("@", TokenClass.OPTCONCAT);
 
         // relational operators
         tokenClasses.put("<", TokenClass.OPTLESS);
