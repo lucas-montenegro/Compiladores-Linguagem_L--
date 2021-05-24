@@ -1,4 +1,4 @@
-function void shellSort (int size, int array lista[]){
+function void shellSort (int size, array int lista[]){
   int gap, i, j , aux;
   gap = 1;
 
@@ -6,7 +6,8 @@ function void shellSort (int size, int array lista[]){
     gap = 3*gap+1;
   }
   while(gap > 0){
-      for(i = gap, size,1){
+      i = gap;
+      while(i < size) {
         aux = lista[i];
         j = i;
         while(j > gap-1 && aux <= lista[j-gap]){
@@ -14,6 +15,7 @@ function void shellSort (int size, int array lista[]){
           j = j - gap;
         }
         lista[j]=aux;
+        i = i + 1;
       }
     gap = gap/3;
 
@@ -21,18 +23,26 @@ function void shellSort (int size, int array lista[]){
 }
 
 function int main(){
-  int n;
+  int i, n;
+  i = 0;
   read(n);
   array int lista[n];
-  for(int i, 0, n, 1){
+  while(i < n) {
     read(lista[i]);
+    i = i + 1;
   }
-  for(int i, 0, n, 1){
-    write("#i", lista[i]);
+
+  i = 0;
+  while(i < n) {
+      write("#i", lista[i]);
+      i = i + 1;
   }
+
   shellSort(n, lista);
-  for(int i, 0, n, 1){
-     write("#i", lista[i]);
+  i = 0;
+  while(i < n) {
+        write("#i", lista[i]);
+        i = i + 1;
   }
   write("\n");
   return 0;

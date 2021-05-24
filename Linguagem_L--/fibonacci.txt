@@ -19,7 +19,7 @@ function void fibonacci(int n) {
             }
             else {
                 write("\n");
-                break;
+                $break;
             }
             a = b;
             b = c;

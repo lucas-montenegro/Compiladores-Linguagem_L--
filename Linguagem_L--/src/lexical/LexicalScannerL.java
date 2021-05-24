@@ -1,14 +1,11 @@
 package lexical;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class LexicalScannerL {
     Hashtable<String, TokenClass> tokenClasses = new Hashtable<String, TokenClass>();
 
     private int pos = 0;
-    private int row = 0;
+    private int row = 1;
     private int column = 0;
 
     public LexicalScannerL() {
@@ -424,7 +421,7 @@ public class LexicalScannerL {
         return c == '.';
     }
 
-    private boolean isEOF(String line) { // check if the line reached the end
+    public boolean isEOF(String line) { // check if the line reached the end
         return pos == line.length();
     }
     // end of character recognizing methods
