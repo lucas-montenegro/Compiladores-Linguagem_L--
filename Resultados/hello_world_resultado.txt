@@ -1,0 +1,55 @@
+0001  function int main () {
+          S = Decl S
+          Decl = DeclFunc
+          DeclFunc = 'function' TypeOrVoid MainOrId DeclParam Scope
+              [0001, 0000] (0046,              FUNCDEF) {function}
+          TypeOrVoid = Type
+          Type = 'int'
+              [0001, 0009] (0004,              TYPEINT) {int}
+          MainOrId = 'main'
+              [0001, 0013] (0001,                 MAIN) {main}
+          DeclParam = '(' ParamOpOrNoParam ')'
+              [0001, 0018] (0042,            PARAMINIT) {(}
+          ParamOrNoParam = 'épsilon'
+              [0001, 0019] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0001, 0021] (0048,             FUNCINIT) {{}
+0002    write ("Hello World!");
+          Sentences = Instructions Sentences
+          Instructions = 'write' '(' 'constString' WriteParam ')' ';'
+              [0002, 0002] (0040,                WRITE) {write}
+              [0002, 0008] (0042,            PARAMINIT) {(}
+              [0002, 0009] (0016,          CONSTSTRING) {"Hello World!"}
+          WriteParam = 'épsilon'
+              [0002, 0023] (0043,             PARAMEND) {)}
+              [0002, 0024] (0050,            SENTENEND) {;}
+0003    return 1;
+          Sentences = 'return' Return ';' Sentences
+              [0003, 0002] (0047,           FUNCRETURN) {return}
+          Return = Expr
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Const
+          Const = 'constInt'
+              [0003, 0009] (0012,             CONSTINT) {1}
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0003, 0010] (0050,            SENTENEND) {;}
+0004  }
+          Sentences = 'épsilon'
+              [0004, 0000] (0049,              FUNCEND) {}}
+0004
+          S = 'eof'
+              [0004, 0001] (0051,              ENDFILE) {EOF}

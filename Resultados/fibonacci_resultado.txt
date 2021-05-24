@@ -1,0 +1,542 @@
+0001  function void fibonacci(int n) {
+          S = Decl S
+          Decl = DeclFunc
+          DeclFunc = 'function' TypeOrVoid MainOrId DeclParam Scope
+              [0001, 0000] (0046,              FUNCDEF) {function}
+          TypeOrVoid = 'void'
+              [0001, 0009] (0003,             TYPEVOID) {void}
+          MainOrId = 'id'
+              [0001, 0014] (0002,                   ID) {fibonacci}
+          DeclParam = '(' ParamOpOrNoParam ')'
+              [0001, 0023] (0042,            PARAMINIT) {(}
+          ParamOpOrNoParam = ParamOp
+          ParamOp = DeclVarOp
+          DeclVarOp = Type 'id' ParamCommaOp
+          Type = 'int'
+              [0001, 0024] (0004,              TYPEINT) {int}
+              [0001, 0028] (0002,                   ID) {n}
+          ParamCommaOp = 'épsilon'
+              [0001, 0029] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0001, 0031] (0048,             FUNCINIT) {{}
+0002      int a, b, c;
+          Sentences = DeclVar Sentences
+          DeclVar = Type VarOp ';'
+          Type = 'int'
+              [0002, 0004] (0004,              TYPEINT) {int}
+          VarOp = 'id' CommaOp
+              [0002, 0008] (0002,                   ID) {a}
+          CommaOp = ',' VarOp
+              [0002, 0009] (0041,            SEPARATOR) {,}
+          VarOp = 'id' CommaOp
+              [0002, 0011] (0002,                   ID) {b}
+          CommaOp = ',' VarOp
+              [0002, 0012] (0041,            SEPARATOR) {,}
+          VarOp = 'id' CommaOp
+              [0002, 0014] (0002,                   ID) {c}
+          CommaOp = 'épsilon'
+              [0002, 0015] (0050,            SENTENEND) {;}
+0003      string space;
+          Sentences = DeclVar Sentences
+          DeclVar = Type VarOp ';'
+          Type = 'string'
+              [0003, 0004] (0008,           TYPESTRING) {string}
+          VarOp = 'id' CommaOp
+              [0003, 0011] (0002,                   ID) {space}
+          CommaOp = 'épsilon'
+              [0003, 0016] (0050,            SENTENEND) {;}
+0004      a = 0;
+          Sentences = AtribOrFuncCall Sentences
+          AtribOrFuncCall = 'id' CheckAtribOrFuncCall
+              [0004, 0004] (0002,                   ID) {a}
+          CheckAtribOrFuncCall = '=' AtribOp2
+              [0004, 0006] (0024,                ATRIB) {=}
+          AtribOp2 = Expr ';'
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Const
+          Const = 'constInt'
+              [0004, 0008] (0012,             CONSTINT) {0}
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0004, 0009] (0050,            SENTENEND) {;}
+0005      b = 1;
+          Sentences = AtribOrFuncCall Sentences
+          AtribOrFuncCall = 'id' CheckAtribOrFuncCall
+              [0005, 0004] (0002,                   ID) {b}
+          CheckAtribOrFuncCall = '=' AtribOp2
+              [0005, 0006] (0024,                ATRIB) {=}
+          AtribOp2 = Expr ';'
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Const
+          Const = 'constInt'
+              [0005, 0008] (0012,             CONSTINT) {1}
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0005, 0009] (0050,            SENTENEND) {;}
+0006
+0007      if(n == 0) {
+          Sentences = IfConditional Sentences
+          IfConditional = 'if' '(' Expr ')' Scope OtherConditional
+              [0007, 0004] (0034,               CONDIF) {if}
+              [0007, 0006] (0042,            PARAMINIT) {(}
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0007, 0007] (0002,                   ID) {n}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = OptRel2 Ea Ral
+          OptRel2 = '=='
+              [0007, 0009] (0029,                OPTEQ) {==}
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Const
+          Const = 'constInt'
+              [0007, 0012] (0012,             CONSTINT) {0}
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0007, 0013] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0007, 0015] (0048,             FUNCINIT) {{}
+0008          write("#i\n", n);
+          Sentences = Instructions Sentences
+          Instructions = 'write' '(' 'constString' WriteParam ')' ';'
+              [0008, 0008] (0040,                WRITE) {write}
+              [0008, 0013] (0042,            PARAMINIT) {(}
+              [0008, 0014] (0016,          CONSTSTRING) {"#i\n"}
+          WriteParam = ',' VarOrArrParam
+              [0008, 0020] (0041,            SEPARATOR) {,}
+          VarOrArrParam = 'id' VarOrArr VarOrArrCommaOp
+              [0008, 0022] (0002,                   ID) {n}
+          VarOrArr = 'épsilon'
+          VarOrArrCommaOp = 'épsilon'
+              [0008, 0023] (0043,             PARAMEND) {)}
+              [0008, 0024] (0050,            SENTENEND) {;}
+0009      }
+          Sentences = 'épsilon'
+              [0009, 0004] (0049,              FUNCEND) {}}
+0010      elsif(n == 1) {
+          OtherConditional = ElsifConditional
+          ElsifConditional = 'elsif' '(' Expr ')' Scope OtherConditional
+              [0010, 0004] (0035,            CONDELSIF) {elsif}
+              [0010, 0009] (0042,            PARAMINIT) {(}
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0010, 0010] (0002,                   ID) {n}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = OptRel2 Ea Ral
+          OptRel2 = '=='
+              [0010, 0012] (0029,                OPTEQ) {==}
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Const
+          Const = 'constInt'
+              [0010, 0015] (0012,             CONSTINT) {1}
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0010, 0016] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0010, 0018] (0048,             FUNCINIT) {{}
+0011          write("0, #i\n", n);
+          Sentences = Instructions Sentences
+          Instructions = 'write' '(' 'constString' WriteParam ')' ';'
+              [0011, 0008] (0040,                WRITE) {write}
+              [0011, 0013] (0042,            PARAMINIT) {(}
+              [0011, 0014] (0016,          CONSTSTRING) {"0, #i\n"}
+          WriteParam = ',' VarOrArrParam
+              [0011, 0023] (0041,            SEPARATOR) {,}
+          VarOrArrParam = 'id' VarOrArr VarOrArrCommaOp
+              [0011, 0025] (0002,                   ID) {n}
+          VarOrArr = 'épsilon'
+          VarOrArrCommaOp = 'épsilon'
+              [0011, 0026] (0043,             PARAMEND) {)}
+              [0011, 0027] (0050,            SENTENEND) {;}
+0012      }
+          Sentences = 'épsilon'
+              [0012, 0004] (0049,              FUNCEND) {}}
+0013      else {
+          OtherConditional = ElseConditional
+          ElseConditional = 'else' Scope
+              [0013, 0004] (0036,             CONDELSE) {else}
+          Scope = '{' Sentences '}'
+              [0013, 0009] (0048,             FUNCINIT) {{}
+0014          write("0, 1");
+          Sentences = Instructions Sentences
+          Instructions = 'write' '(' 'constString' WriteParam ')' ';'
+              [0014, 0008] (0040,                WRITE) {write}
+              [0014, 0013] (0042,            PARAMINIT) {(}
+              [0014, 0014] (0016,          CONSTSTRING) {"0, 1"}
+          WriteParam = 'épsilon'
+              [0014, 0020] (0043,             PARAMEND) {)}
+              [0014, 0021] (0050,            SENTENEND) {;}
+0015          c = a + b;
+          Sentences = AtribOrFuncCall Sentences
+          AtribOrFuncCall = 'id' CheckAtribOrFuncCall
+              [0015, 0008] (0002,                   ID) {c}
+          CheckAtribOrFuncCall = '=' AtribOp2
+              [0015, 0010] (0024,                ATRIB) {=}
+          AtribOp2 = Expr ';'
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0015, 0012] (0002,                   ID) {a}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'optAdd' Ta Eal
+              [0015, 0014] (0017,               OPTADD) {+}
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0015, 0016] (0002,                   ID) {b}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0015, 0017] (0050,            SENTENEND) {;}
+0016          while(c < n) {
+          Sentences = LogicalLoop Sentences
+          LogicalLoop = 'while' '(' Expr ')' Scope
+              [0016, 0008] (0037,            LOOPWHILE) {while}
+              [0016, 0013] (0042,            PARAMINIT) {(}
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0016, 0014] (0002,                   ID) {c}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = OptRel1 Ra Fbl
+          OptRel1 = '<'
+              [0016, 0016] (0025,              OPTLESS) {<}
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0016, 0018] (0002,                   ID) {n}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0016, 0019] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0016, 0021] (0048,             FUNCINIT) {{}
+0017              if(c < n)  {
+          Sentences = IfConditional Sentences
+          IfConditional = 'if' '(' Expr ')' Scope OtherConditional
+              [0017, 0012] (0034,               CONDIF) {if}
+              [0017, 0014] (0042,            PARAMINIT) {(}
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0017, 0015] (0002,                   ID) {c}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = OptRel1 Ra Fbl
+          OptRel1 = '<'
+              [0017, 0017] (0025,              OPTLESS) {<}
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0017, 0019] (0002,                   ID) {n}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0017, 0020] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0017, 0023] (0048,             FUNCINIT) {{}
+0018                  write(", #d", c);
+          Sentences = Instructions Sentences
+          Instructions = 'write' '(' 'constString' WriteParam ')' ';'
+              [0018, 0016] (0040,                WRITE) {write}
+              [0018, 0021] (0042,            PARAMINIT) {(}
+              [0018, 0022] (0016,          CONSTSTRING) {", #d"}
+          WriteParam = ',' VarOrArrParam
+              [0018, 0028] (0041,            SEPARATOR) {,}
+          VarOrArrParam = 'id' VarOrArr VarOrArrCommaOp
+              [0018, 0030] (0002,                   ID) {c}
+          VarOrArr = 'épsilon'
+          VarOrArrCommaOp = 'épsilon'
+              [0018, 0031] (0043,             PARAMEND) {)}
+              [0018, 0032] (0050,            SENTENEND) {;}
+0019              }
+          Sentences = 'épsilon'
+              [0019, 0012] (0049,              FUNCEND) {}}
+0020              else {
+          OtherConditional = ElseConditional
+          ElseConditional = 'else' Scope
+              [0020, 0012] (0036,             CONDELSE) {else}
+          Scope = '{' Sentences '}'
+              [0020, 0017] (0048,             FUNCINIT) {{}
+0021                  write("\n");
+          Sentences = Instructions Sentences
+          Instructions = 'write' '(' 'constString' WriteParam ')' ';'
+              [0021, 0016] (0040,                WRITE) {write}
+              [0021, 0021] (0042,            PARAMINIT) {(}
+              [0021, 0022] (0016,          CONSTSTRING) {"\n"}
+          WriteParam = 'épsilon'
+              [0021, 0026] (0043,             PARAMEND) {)}
+              [0021, 0027] (0050,            SENTENEND) {;}
+0022                  $break;
+0023              }
+          Sentences = 'épsilon'
+              [0023, 0012] (0049,              FUNCEND) {}}
+0024              a = b;
+          Sentences = AtribOrFuncCall Sentences
+          AtribOrFuncCall = 'id' CheckAtribOrFuncCall
+              [0024, 0012] (0002,                   ID) {a}
+          CheckAtribOrFuncCall = '=' AtribOp2
+              [0024, 0014] (0024,                ATRIB) {=}
+          AtribOp2 = Expr ';'
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0024, 0016] (0002,                   ID) {b}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0024, 0017] (0050,            SENTENEND) {;}
+0025              b = c;
+          Sentences = AtribOrFuncCall Sentences
+          AtribOrFuncCall = 'id' CheckAtribOrFuncCall
+              [0025, 0012] (0002,                   ID) {b}
+          CheckAtribOrFuncCall = '=' AtribOp2
+              [0025, 0014] (0024,                ATRIB) {=}
+          AtribOp2 = Expr ';'
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Variables
+          Variables = 'id' VarOrArrOrFunc
+              [0025, 0016] (0002,                   ID) {c}
+          VarOrArrOrFunc = 'épsilon'
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0025, 0017] (0050,            SENTENEND) {;}
+0026          }
+          Sentences = 'épsilon'
+              [0026, 0008] (0049,              FUNCEND) {}}
+0027      }
+          Sentences = 'épsilon'
+              [0027, 0004] (0049,              FUNCEND) {}}
+0028      return;
+          Sentences = 'return' Return ';' Sentences
+              [0028, 0004] (0047,           FUNCRETURN) {return}
+          Return = 'épsilon'
+              [0028, 0010] (0050,            SENTENEND) {;}
+0029  }
+          Sentences = 'épsilon'
+              [0029, 0000] (0049,              FUNCEND) {}}
+0030
+0031  function int main () {
+          S = Decl S
+          Decl = DeclFunc
+          DeclFunc = 'function' TypeOrVoid MainOrId DeclParam Scope
+              [0031, 0000] (0046,              FUNCDEF) {function}
+          TypeOrVoid = Type
+          Type = 'int'
+              [0031, 0009] (0004,              TYPEINT) {int}
+          MainOrId = 'main'
+              [0031, 0013] (0001,                 MAIN) {main}
+          DeclParam = '(' ParamOpOrNoParam ')'
+              [0031, 0018] (0042,            PARAMINIT) {(}
+          ParamOrNoParam = 'épsilon'
+              [0031, 0019] (0043,             PARAMEND) {)}
+          Scope = '{' Sentences '}'
+              [0031, 0021] (0048,             FUNCINIT) {{}
+0032      int n;
+          Sentences = DeclVar Sentences
+          DeclVar = Type VarOp ';'
+          Type = 'int'
+              [0032, 0004] (0004,              TYPEINT) {int}
+          VarOp = 'id' CommaOp
+              [0032, 0008] (0002,                   ID) {n}
+          CommaOp = 'épsilon'
+              [0032, 0009] (0050,            SENTENEND) {;}
+0033      read(n);
+          Sentences = Instructions Sentences
+          Instructions = 'read' '(' VarOrArrParam ')' ';'
+              [0033, 0004] (0039,                 READ) {read}
+              [0033, 0008] (0042,            PARAMINIT) {(}
+          VarOrArrParam = 'id' VarOrArr VarOrArrCommaOp
+              [0033, 0009] (0002,                   ID) {n}
+          VarOrArr = 'épsilon'
+          VarOrArrCommaOp = 'épsilon'
+              [0033, 0010] (0043,             PARAMEND) {)}
+              [0033, 0011] (0050,            SENTENEND) {;}
+0034      fibbonaci(n);
+          Sentences = AtribOrFuncCall Sentences
+          AtribOrFuncCall = 'id' CheckAtribOrFuncCall
+              [0034, 0004] (0002,                   ID) {fibbonaci}
+          CheckAtribOrFuncCall = '(' FuncCall
+              [0034, 0013] (0042,            PARAMINIT) {(}
+          FuncCall = VarOpOrNoVar ')' ';'
+          VarOpOrNoVar = VarOrArrParam
+          VarOrArrParam = 'id' VarOrArr VarOrArrCommaOp
+              [0034, 0014] (0002,                   ID) {n}
+          VarOrArr = 'épsilon'
+          VarOrArrCommaOp = 'épsilon'
+              [0034, 0015] (0043,             PARAMEND) {)}
+              [0034, 0016] (0050,            SENTENEND) {;}
+0035      return 1;
+          Sentences = 'return' Return ';' Sentences
+              [0035, 0004] (0047,           FUNCRETURN) {return}
+          Return = Expr
+          Expr = Eb Exprl
+          Eb = Tb Ebl
+          Tb = Fb Tbl
+          Fb = Ra Fbl
+          Ra = Ea Ral
+          Ea = Ta Eal
+          Ta = Pa Tal
+          Pa = Fa Pal
+          Fa = Const
+          Const = 'constInt'
+              [0035, 0011] (0012,             CONSTINT) {1}
+          Pal = 'épsilon'
+          Tal = 'épsilon'
+          Eal = 'épsilon'
+          Ral = 'épsilon'
+          Fbl = 'épsilon'
+          Tbl = 'épsilon'
+          Ebl = 'épsilon'
+          Exprl = 'épsilon'
+              [0035, 0012] (0050,            SENTENEND) {;}
+0036  }
+          Sentences = 'épsilon'
+              [0036, 0000] (0049,              FUNCEND) {}}
+0036
+          S = 'eof'
+              [0036, 0001] (0051,              ENDFILE) {EOF}
